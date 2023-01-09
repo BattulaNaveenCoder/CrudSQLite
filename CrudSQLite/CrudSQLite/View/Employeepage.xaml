@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CrudSQLite.ViewModel"
+             x:Class="CrudSQLite.View.Employeepage"
+            
+             >
+    <ContentPage.BindingContext>
+        <local:EmployeeViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Employee" Command="{Binding AddEmployee}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>            
+            <CollectionView ItemsSource="{Binding employeedata}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>                           
+                            <StackLayout Grid.Column="0">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding EmpId}" TextColor="Black" FontSize="18"/>
+                                    <Label Text="." TextColor="Black" FontSize="18"/>
+                                    <Label Text="{Binding EmpName}" TextColor="Black" FontSize="18"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding EmpSalary}" TextColor="Black" FontSize="18"/>
+                                    <Label Text="{Binding EmpDOJ,StringFormat='{}{0:MM/dd/yyyy}'}" TextColor="Black" FontSize="18"/>
+                                </StackLayout>
+                            </StackLayout>
+                                <StackLayout Grid.Column="1">
+                                    <Image Source="edit.png" HeightRequest="25" WidthRequest="25">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EmployeeViewModel}},Path=EmployeeEdit}" CommandParameter="{Binding .}"/>
+                                        </Image.GestureRecognizers >
+                                    </Image>
+                                    <Image Source="delete.png" HeightRequest="25" WidthRequest="25">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EmployeeViewModel}},Path=EmployeeDelete}" CommandParameter="{Binding .}" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate> 
+            </CollectionView>           
+        </StackLayout>            
+    </ContentPage.Content>
+</ContentPage>

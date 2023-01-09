@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CrudSQLite.ViewModel"
+             x:Class="CrudSQLite.View.AddEmployeepage">
+    <ContentPage.BindingContext>
+        <local:AddEmployeeViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame>
+                <StackLayout>
+                    <Entry Placeholder=" Employee Id"  Text="{Binding Employeedata.EmpId,Mode=TwoWay}" IsEnabled="False"/>
+                    <Entry Placeholder="Enter Employee Name"  Text="{Binding Employeedata.EmpName,Mode=TwoWay}"/>
+                    <Entry Placeholder="Enter Employee Salary" Text="{Binding Employeedata.EmpSalary,Mode=TwoWay}"/>
+                    <DatePicker  Date="{Binding Employeedata.EmpDOJ,Mode=TwoWay}"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Save" Command="{Binding save}"/>
+                        <Button Text="Cancel" Command="{Binding cancel}"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
